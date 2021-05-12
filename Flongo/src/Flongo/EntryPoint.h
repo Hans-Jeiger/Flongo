@@ -6,7 +6,10 @@ extern Flongo::Application* Flongo::createApplication();
 
 int main(int argc, char** argv)
 {
-	printf("Flongo Engine :)\n");
+	Flongo::Log::init();
+	FLO_CORE_WARN("Initialized a cute little core log! :)");
+	int a = 5;
+	FLO_INFO("Var={0}", a);
 	auto app = Flongo::createApplication();
 	app->run();
 	delete app;

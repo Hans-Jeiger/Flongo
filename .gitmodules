@@ -1,0 +1,6 @@
+[submodule "Flongo/ExternalDependencies/spdlog"]
+	path = Flongo/ExternalDependencies/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Flongo/ExternalDependencies/GLFW"]
+	path = Flongo/ExternalDependencies/GLFW
+	url = https://github.com/TheCherno/glfw
