@@ -4,3 +4,6 @@
 [submodule "Flongo/ExternalDependencies/GLFW"]
 	path = Flongo/ExternalDependencies/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Flongo/ExternalDependencies/imgui"]
+	path = Flongo/ExternalDependencies/imgui
+	url = https://github.com/TheCherno/imgui

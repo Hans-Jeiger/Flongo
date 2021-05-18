@@ -58,7 +58,7 @@ namespace Flongo
 			return getCategoryFlags() & category;
 		}
 
-	protected:
+	//protected:
 		bool handled = false;
 	};
 

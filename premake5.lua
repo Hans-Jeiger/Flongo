@@ -13,8 +13,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Inlcude directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Flongo/ExternalDependencies/GLFW/include"
+IncludeDir["Glad"] = "Flongo/ExternalDependencies/Glad/include"
+IncludeDir["ImGui"] = "Flongo/ExternalDependencies/imgui"
 
 include "Flongo/ExternalDependencies/GLFW"
+include "Flongo/ExternalDependencies/Glad"
+include "Flongo/ExternalDependencies/imgui"
 
 project "Flongo"
 	location "Flongo"
@@ -37,7 +41,11 @@ project "Flongo"
 	{
 		"%{prj.name}/ExternalDependencies/spdlog/include",
 		"Flongo/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
+
+
 	}
 
 	libdirs
@@ -47,19 +55,22 @@ project "Flongo"
 
 	links
 	{
-		"GLFW.lib",
+		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
 		{
 			"FLO_PLATFORM_WINDOWS",
-			"FLO_BUILD_DLL"
+			"FLO_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -107,7 +118,7 @@ project "Editor"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines

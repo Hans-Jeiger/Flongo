@@ -3,6 +3,7 @@
 #include "Flongo/Events/ApplicationEvent.h"
 #include "Flongo/Events/MouseEvent.h"
 #include "Flongo/Events/KeyEvent.h"
+#include <glad/glad.h>
 
 namespace Flongo
 {
@@ -47,7 +48,10 @@ namespace Flongo
 
 		window = glfwCreateWindow((int)props.width, (int)props.height, data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		FLO_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(window, &data);
+		setVSync(true);
 
 		// Set GLFW callbacks 
 		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) 

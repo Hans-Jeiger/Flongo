@@ -7,6 +7,9 @@
     <Filter Include="Flongo\Events">
       <UniqueIdentifier>{8EB77271-FA77-EEA7-C3B2-37252F323384}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flongo\Layers">
+      <UniqueIdentifier>{69A25580-D562-D1B6-9E9D-1A340A1D1693}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -37,6 +40,12 @@
     <ClInclude Include="src\Flongo\Events\MouseEvent.h">
       <Filter>Flongo\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Flongo\Layers\Layer.h">
+      <Filter>Flongo\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flongo\Layers\LayerStack.h">
+      <Filter>Flongo\Layers</Filter>
+    </ClInclude>
     <ClInclude Include="src\Flongo\Log.h">
       <Filter>Flongo</Filter>
     </ClInclude>
@@ -45,10 +54,18 @@
     </ClInclude>
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\flopch.h" />
+    <ClInclude Include="src\Flongo\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Flongo\Application.cpp">
       <Filter>Flongo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flongo\Layers\Layer.cpp">
+      <Filter>Flongo\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flongo\Layers\LayerStack.cpp">
+      <Filter>Flongo\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Flongo\Log.cpp">
       <Filter>Flongo</Filter>
@@ -57,5 +74,7 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\flopch.cpp" />
+    <ClCompile Include="src\Flongo\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>
