@@ -7,3 +7,6 @@
 [submodule "Flongo/ExternalDependencies/imgui"]
 	path = Flongo/ExternalDependencies/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Flongo/ExternalDependencies/glm"]
+	path = Flongo/ExternalDependencies/glm
+	url = https://github.com/g-truc/glm
