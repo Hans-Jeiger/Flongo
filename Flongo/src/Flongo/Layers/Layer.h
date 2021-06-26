@@ -14,6 +14,7 @@ namespace Flongo
 		virtual void onAttach() {}
 		virtual void onDetach() {}
 		virtual void onUpdate() {}
+		virtual void onImGuiRender() {}
 		virtual void onEvent(Event& event) {}
 
 		inline const std::string& getName() const { return debugName; }

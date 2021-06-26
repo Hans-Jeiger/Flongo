@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Window.h"
+#include "Flongo/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Flongo
 {
@@ -21,17 +23,21 @@ namespace Flongo
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
 
+		inline virtual void* getNativeWindow() const override { return window; }
+
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();
 
+	private:
+		GraphicsContext* context;
 		GLFWwindow* window;
 
 		struct WindowData
 		{
-			std::string title;
-			unsigned int width, height;
-			bool VSync;
+			std::string title = "";
+			unsigned int width = 0, height = 0;
+			bool VSync = false;
 
 			EventCallbackFn eventCallback;
 		};

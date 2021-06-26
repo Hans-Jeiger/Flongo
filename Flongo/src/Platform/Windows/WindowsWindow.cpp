@@ -3,7 +3,7 @@
 #include "Flongo/Events/ApplicationEvent.h"
 #include "Flongo/Events/MouseEvent.h"
 #include "Flongo/Events/KeyEvent.h"
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Flongo
 {
@@ -47,9 +47,9 @@ namespace Flongo
 		}
 
 		window = glfwCreateWindow((int)props.width, (int)props.height, data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		FLO_CORE_ASSERT(status, "Failed to initialize Glad!");
+		context = new OpenGLContext(window);
+		context->init();
+
 		glfwSetWindowUserPointer(window, &data);
 		setVSync(true);
 
@@ -98,6 +98,13 @@ namespace Flongo
 				}
 			});
 
+		glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int keycode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(keycode);
+				data.eventCallback(event);
+			});
+
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int modifiers)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -141,7 +148,7 @@ namespace Flongo
 	void WindowsWindow::onUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(window);
+		context->swapBuffers();
 	}
 
 	void WindowsWindow::setVSync(bool enabled)

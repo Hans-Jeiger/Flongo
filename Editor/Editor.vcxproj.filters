@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ExternalDependencies">
+      <UniqueIdentifier>{EFA515CE-DB34-9F97-8453-B39270C1AF3D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalDependencies\glm">
+      <UniqueIdentifier>{BE8F608B-AAB4-AF0B-D3FF-949BBF83AE29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExternalDependencies\glm\glm">
+      <Filter>ExternalDependencies\glm</Filter>
+    </None>
+  </ItemGroup>
+</Project>

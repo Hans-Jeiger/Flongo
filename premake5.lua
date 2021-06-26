@@ -1,5 +1,6 @@
 workspace "Flongo"
 	architecture "x64"
+	startproject "Editor"
 
 	configurations
 	{
@@ -15,15 +16,22 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Flongo/ExternalDependencies/GLFW/include"
 IncludeDir["Glad"] = "Flongo/ExternalDependencies/Glad/include"
 IncludeDir["ImGui"] = "Flongo/ExternalDependencies/imgui"
+IncludeDir["glm"] = "Flongo/ExternalDependencies/glm"
 
-include "Flongo/ExternalDependencies/GLFW"
-include "Flongo/ExternalDependencies/Glad"
-include "Flongo/ExternalDependencies/imgui"
+
+group "Dependencies"
+	include "Flongo/ExternalDependencies/GLFW"
+	include "Flongo/ExternalDependencies/Glad"
+	include "Flongo/ExternalDependencies/imgui"
+group""
+
 
 project "Flongo"
 	location "Flongo"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -34,7 +42,14 @@ project "Flongo"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/ExternalDependencies/glm/glm/**.hpp",
+		"%{prj.name}/ExternalDependencies/glm/glm/**.inl",
+	}
+
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -43,14 +58,14 @@ project "Flongo"
 		"Flongo/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
-
-
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	libdirs
 	{
-		"Flongo/ExternalDependencies/GLFW/bin/Debug-windows-x86_64/GLFW"
+		"Flongo/ExternalDependencies/GLFW/bin/Debug-windows-x86_64/GLFW",
+		"Flongo/ExternalDependencies/imgui/bin/Debug-windows-x86_64/ImGui"
 	}
 
 	links
@@ -62,8 +77,6 @@ project "Flongo"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -73,28 +86,26 @@ project "Flongo"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Editor")
-		}
-
 	filter "configurations:Debug"
 		defines "FLO_DEBUG"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "FLO_RELEASE"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "FLO_DIST"
-		optimize "On"
+		optimize "on"
 
 
 project "Editor"
 	location "Editor"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -102,13 +113,16 @@ project "Editor"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
 	}
 
 	includedirs
 	{
 		"Flongo/ExternalDependencies/spdlog/include",
-		"Flongo/src"
+		"Flongo/src",
+		"%{IncludeDir.glm}",
+		"Flongo/ExternalDependencies"
+
 	}
 
 	links
@@ -117,8 +131,6 @@ project "Editor"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -128,12 +140,12 @@ project "Editor"
 
 	filter "configurations:Debug"
 		defines "FLO_DEBUG"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "FLO_RELEASE"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "FLO_DIST"
-		optimize "On"
+		optimize "on"

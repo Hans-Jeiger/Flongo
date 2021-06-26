@@ -6,7 +6,6 @@ namespace Flongo
 {
 	LayerStack::LayerStack()
 	{
-		layerInsert = layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -17,7 +16,8 @@ namespace Flongo
 
 	void LayerStack::pushLayer(Layer* layer)
 	{
-		layerInsert = layers.emplace(layerInsert, layer);
+		layers.emplace(layers.begin() + layerInsertIndex, layer);
+		layerInsertIndex++;
 	}
 
 	void LayerStack::pushOverlay(Layer* overlay)
@@ -31,7 +31,7 @@ namespace Flongo
 		if (it != layers.end())
 		{
 			layers.erase(it);
-			layerInsert--;
+			layerInsertIndex--;
 		}
 	}
 
