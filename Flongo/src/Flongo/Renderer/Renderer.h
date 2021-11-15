@@ -1,19 +1,16 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace Flongo
 {
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL = 1
-	};
-
 	class Renderer
 	{
 	public:
-		inline static RendererAPI getAPI() { return rendererAPI; }
+		static void beginScene();
+		static void endScene();
+		static void submit(const std::shared_ptr<VertexArray>& vertexArray);
 
-	private:
-		static RendererAPI rendererAPI;
+		inline static RendererAPI::API getAPI() { return RendererAPI::getAPI(); }
 	};
 }

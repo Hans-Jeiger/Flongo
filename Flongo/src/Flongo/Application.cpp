@@ -4,7 +4,8 @@
 #include "Flongo/Log.h"
 #include "Input.h"
 
-#include <glad/glad.h>
+#include "Flongo/Renderer/Renderer.h"
+
 #include <imgui.h>
 
 
@@ -14,14 +15,6 @@ namespace Flongo
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 	Application* Application::instance = nullptr;
-
-
-
-
-
-
-
-
 
 	Application::Application()
 	{
@@ -68,10 +61,10 @@ namespace Flongo
 
 		float squareVertices[3 * 4] =
 		{
-			-0.5f, -0.5f,  0.0f,
-			 0.5f, -0.5f,  0.0f,
-			 0.5f,  0.5f,  0.0f,
-			-0.5f,  0.5f,  0.0f
+			-0.6f, -0.6f,  0.6f,
+			 0.6f, -0.6f,  0.6f,
+			 0.6f,  0.6f,  0.6f,
+			-0.6f,  0.6f,  0.6f
 		};
 
 		std::shared_ptr<VertexBuffer> squareVB;
@@ -168,17 +161,20 @@ namespace Flongo
 	{
 		while (running)
 		{
-			glClearColor(0.1f, 0.11f, 0.12f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::setClearColor({ 0.1f, 0.11f, 0.12f, 1 });
+			RenderCommand::clear();
+
+			Renderer::beginScene();
 
 			shader2->bind();
-			squareVA->bind();
-			glDrawElements(GL_TRIANGLES, squareVA->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::submit(squareVA);
 
 			shader->bind();
-			vertexArray->bind();
-			glDrawElements(GL_TRIANGLES, vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::submit(vertexArray);
 
+			Renderer::endScene();
+
+			
 			for (Layer* layer : layerStack)
 				layer->onUpdate();
 

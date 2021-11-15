@@ -10,9 +10,9 @@ namespace Flongo
 	{
 		switch (Renderer::getAPI())
 		{
-			case RendererAPI::None: FLO_CORE_ASSERT(false, "RendererAPI::None is not supported!");
+			case RendererAPI::API::None: FLO_CORE_ASSERT(false, "RendererAPI::None is not supported!");
 				return nullptr;
-			case RendererAPI::OpenGL: return new OpenGLVertexArray();
+			case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		}
 
 		FLO_CORE_ASSERT(false, "Unknown RendererAPI!");
