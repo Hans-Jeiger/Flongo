@@ -9,12 +9,12 @@
 
 #include "Flongo/Renderer/Shader.h"
 
-#include "Flongo/Renderer/Buffer.h"
-#include "Flongo/Renderer/VertexArray.h"
+#include "Flongo/Renderer/Renderer.h"
+#include "Flongo/Core/Timestep.h"
 
 namespace Flongo
 {
-	class FLONGO_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -32,17 +32,13 @@ namespace Flongo
 
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
-
+	
+	private:
 		std::unique_ptr<Window> window;
 		ImGuiLayer* ImGuiLayer;
 		bool running = true;
 		LayerStack layerStack;
-
-		std::shared_ptr<Shader> shader;
-		std::shared_ptr<Shader> shader2;
-		std::shared_ptr<VertexArray> vertexArray;
-
-		std::shared_ptr<VertexArray> squareVA;
+		std::chrono::system_clock::time_point lastFrameTime = std::chrono::system_clock::now();
 
 	private:
 		static Application* instance;

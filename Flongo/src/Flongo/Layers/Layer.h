@@ -2,6 +2,7 @@
 
 #include "Flongo/Core.h"
 #include "Flongo/Events/Event.h"
+#include "Flongo/Core/Timestep.h"
 
 namespace Flongo
 {
@@ -13,7 +14,7 @@ namespace Flongo
 
 		virtual void onAttach() {}
 		virtual void onDetach() {}
-		virtual void onUpdate() {}
+		virtual void onUpdate(Timestep timestep) {}
 		virtual void onImGuiRender() {}
 		virtual void onEvent(Event& event) {}
 

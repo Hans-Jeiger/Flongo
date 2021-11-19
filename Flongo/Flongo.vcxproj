@@ -561,6 +561,7 @@
     <ClInclude Include="src\Flongo.h" />
     <ClInclude Include="src\Flongo\Application.h" />
     <ClInclude Include="src\Flongo\Core.h" />
+    <ClInclude Include="src\Flongo\Core\Timestep.h" />
     <ClInclude Include="src\Flongo\EntryPoint.h" />
     <ClInclude Include="src\Flongo\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Flongo\Events\Event.h" />
@@ -575,6 +576,7 @@
     <ClInclude Include="src\Flongo\MouseButtonCodes.h" />
     <ClInclude Include="src\Flongo\Renderer\Buffer.h" />
     <ClInclude Include="src\Flongo\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Flongo\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Flongo\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Flongo\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Flongo\Renderer\Renderer.h" />
@@ -597,6 +599,7 @@
     <ClCompile Include="src\Flongo\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Flongo\Log.cpp" />
     <ClCompile Include="src\Flongo\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Flongo\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Flongo\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Flongo\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Flongo\Renderer\RendererAPI.cpp" />
